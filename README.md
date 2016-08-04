@@ -1,20 +1,33 @@
 # Twisp
 
-To start your Phoenix app:
+## Requirements
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  * Install Node.js dependencies with `npm install`
-  * Start Phoenix endpoint with `mix phoenix.server`
+- PostgreSQL 9.3+
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+## Configuration
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+TODO / Twitter credentials
 
-## Learn more
+`mix phoenix.gen.secret`
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+```elixir
+use Mix.Config
+
+config :twisp, Twisp.Endpoint,
+  secret_key_base: "SECRET_KEY"
+
+config :twisp, Twisp.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: "twisp",
+  password: "twisp",
+  database: "twisp_dev",
+  hostname: "localhost",
+  pool_size: 20
+
+config :extwitter, :oauth, [
+   consumer_key:        "CONSUMER_KEY",
+   consumer_secret:     "CONSUMER_SECRET",
+   access_token:        "ACCESS_TOKEN",
+   access_token_secret: "ACCESS_TOKEN_SECRET"
+]
+```
