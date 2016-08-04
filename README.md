@@ -11,6 +11,7 @@ You need to create `dev.secret.exs` and `prod.secret.exs` in `config/`. These fi
 To generate `secret_key_base` you may use `mix phoenix.gen.secret`.
 
 ```elixir
+# config/{env}.secret.exs
 use Mix.Config
 
 config :twisp, Twisp.Endpoint,
