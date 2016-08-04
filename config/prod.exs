@@ -13,7 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :twisp, Twisp.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [host: "ns381702.ip-46-105-96.eu", port: 80],
+  url: [host: "example.org", port: 80],
   cache_static_manifest: "priv/static/manifest.json"
 
 # Do not print debug messages in production
