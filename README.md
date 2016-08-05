@@ -5,6 +5,7 @@ Twisp follows specified keywords and users using Twitter streaming API, and save
 ## Requirements
 
 - Elixir 1.2+
+- Node.js 4.4+
 - PostgreSQL 9.3+
 
 ## Setup
