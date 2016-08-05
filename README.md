@@ -12,5 +12,11 @@ Twisp follows specified keywords and users using Twitter streaming API, and save
 
 ```bash
 git clone https://github.com/maxmouchet/twisp.git && cd twisp
-mix twisp.init
+mix twisp.init # Follow the instructions
+mix ecto.setup
+```
+
+Then to run the app at http://localhost:4000 :
+```bash
+mix phoenix.server
 ```
