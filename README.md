@@ -20,3 +20,13 @@ Then to run the app at http://localhost:4000:
 ```bash
 mix phoenix.server
 ```
+
+## Querying Tweets
+
+```sql
+# Get all tweets text
+SELECT data->>'text' FROM tweets;
+
+# Get everything excepted retweets
+SELECT data->>'text' AS text FROM tweets WHERE data->>'text' NOT LIKE '% RT @%';
+```
