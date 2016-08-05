@@ -28,5 +28,5 @@ mix phoenix.server
 SELECT data->>'text' FROM tweets;
 
 # Get everything excepted retweets
-SELECT data->>'text' AS text FROM tweets WHERE data->>'text' NOT LIKE '% RT @%';
+SELECT data FROM tweets WHERE data->>'text' NOT LIKE '% RT @%';
 ```
