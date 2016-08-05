@@ -5,6 +5,9 @@ defmodule Mix.Tasks.Twisp.Init do
     Mix.Task.run "deps.get"
     Mix.Task.run "compile"
 
+    Mix.shell.info [:green, "* running ", :reset, "npm install"]
+    Mix.Shell.cmd "npm install", [quiet: false]
+
     dev_config  = EEx.eval_file "config/env.secret.eex", [secret_key_base: random_string]
     prod_config = EEx.eval_file "config/env.secret.eex", [secret_key_base: random_string]
 
