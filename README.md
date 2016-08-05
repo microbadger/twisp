@@ -16,7 +16,7 @@ mix twisp.init # Follow the instructions
 mix ecto.setup
 ```
 
-Then to run the app at http://localhost:4000 :
+Then to run the app at http://localhost:4000:
 ```bash
 mix phoenix.server
 ```
