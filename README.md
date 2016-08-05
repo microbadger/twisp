@@ -1,4 +1,4 @@
-# Twisp
+![Twisp](http://i.imgbox.com/52TO2ziT.png)
 
 ## Requirements
 
