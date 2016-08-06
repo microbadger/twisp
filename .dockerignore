@@ -1,0 +1,14 @@
+# Docker
+.dockerignore
+Dockerfile
+
+# Git
+.git/
+
+# Deps & build artifacts
+_build/
+deps/
+node_modules/
+
+# Configuration
+config/*.secret.exs

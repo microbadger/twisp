@@ -2,17 +2,12 @@ defmodule Mix.Tasks.Twisp.Init do
   use Mix.Task
 
   def run(_args) do
-    Mix.Task.run "deps.get"
-    Mix.Task.run "compile"
-
     Mix.shell.info [:green, "* running ", :reset, "npm install"]
     Mix.Shell.cmd "npm install", [quiet: false]
 
-    dev_config  = EEx.eval_file "config/env.secret.eex", [secret_key_base: random_string]
-    prod_config = EEx.eval_file "config/env.secret.eex", [secret_key_base: random_string]
+    config  = EEx.eval_file "config/env.secret.eex", [secret_key_base: random_string]
 
-    Mix.Generator.create_file "config/dev.secret.exs",  dev_config
-    Mix.Generator.create_file "config/prod.secret.exs", prod_config
+    Mix.Generator.create_file "config/dev.secret.exs", config
 
     Mix.shell.info "Please set your credentials in config/dev.secret.exs"
     Mix.shell.info "Note that secrets files are ignored by git"

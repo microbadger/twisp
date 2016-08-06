@@ -33,4 +33,3 @@ config :logger, :console, format: "[$level] $message\n"
 config :phoenix, :stacktrace_depth, 20
 
 import_config "dev.secret.exs"
-
