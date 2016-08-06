@@ -20,6 +20,16 @@ docker run -e DATABASE_URL="..." \
 
 TODO
 
+### Querying Tweets
+
+```sql
+# Get all tweets text
+SELECT data->>'text' FROM tweets;
+
+# Get everything excepted retweets
+SELECT data FROM tweets WHERE data->>'text' NOT LIKE '% RT @%';
+```
+
 ## Development
 
 ### Requirements
@@ -30,10 +40,13 @@ TODO
 
 ### Setup
 
+To obtain Twitter API credentials, first create an [app](https://apps.twitter.com).
+
 ```bash
 git clone https://github.com/maxmouchet/twisp.git && cd twisp
 mix do deps.get, compile
-mix twisp.init
+mix twisp.init # Follow the instructions
+mix ecto.setup
 ```
 
 This is a pretty standard Phoenix app, to run the server:
