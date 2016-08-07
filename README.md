@@ -7,7 +7,33 @@
 
 Twisp follows specified keywords and users using Twitter streaming API, and save matching tweets as JSON in PgSQL.
 
+## Deployment
+
+### Docker
+
+```bash
+docker run -d -p 4000:4000 maxmouchet/twisp
+```
+
+### Heroku
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+After creating the app, you can retrieve the database URL at https://postgres.heroku.com/databases.
+
+### Standalone
+
+```bash
+# Download and compile the app
+git clone https://github.com/maxmouchet/twisp.git && cd twisp
+MIX_ENV=prod mix do deps.get, compile
+
+# Run the app
+MIX_ENV=prod mix run --no-halt
+```
+
 ## Usage
+
+To obtain Twitter API credentials, first create an [app](https://apps.twitter.com).
 
 ```bash
 curl -X "POST" "http://127.0.0.1:4000/recorders" \
@@ -27,22 +53,12 @@ curl -X "POST" "http://127.0.0.1:4000/recorders" \
 SELECT data->>'text' FROM tweets;
 
 # Get everything excepted retweets
-SELECT data FROM tweets WHERE data->>'text' NOT LIKE '% RT @%';
+SELECT data FROM tweets WHERE data->>'text' NOT LIKE '%RT @%';
 ```
 
 ## Development
 
-### Requirements
-
+Requirements:
 - Elixir 1.2+
-- Node.js 4.4+
 - PostgreSQL 9.3+
 
-### Setup
-
-To obtain Twitter API credentials, first create an [app](https://apps.twitter.com).
-
-```bash
-git clone https://github.com/maxmouchet/twisp.git && cd twisp
-mix do deps.get, compile
-```
