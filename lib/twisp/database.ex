@@ -11,6 +11,11 @@ defmodule Twisp.Database do
     Postgrex.start_link(opts)
   end
 
+  def query(pid, statement, params \\ [], opts \\ []) do
+    Logger.debug("[SQL/#{inspect(pid)}] Executing #{statement}, #{inspect(params)}")
+    Postgrex.query(pid, statement, params, opts)
+  end
+
   def query!(pid, statement, params \\ [], opts \\ []) do
     Logger.debug("[SQL/#{inspect(pid)}] Executing #{statement}, #{inspect(params)}")
     Postgrex.query!(pid, statement, params, opts)

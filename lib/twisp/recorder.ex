@@ -47,10 +47,14 @@ defmodule Twisp.Recorder do
       ExTwitter.configure(:process, oauth_tokens)
 
       ExTwitter.stream_filter(track: keywords, follow: user_ids, language: language)
-      |> Stream.map(fn(x) -> Map.from_struct(x) end)
-      |> Stream.each(fn(_) -> Twisp.Recorder.tweet_recorded(current_pid) end)
+      |> Stream.map(fn(x)  -> Map.from_struct(x) end)
       |> Stream.each(fn(x) ->
-        Twisp.Database.query!(db_pid, "INSERT INTO tweets (data) VALUES ($1)", [x])
+        case Twisp.Database.query(db_pid, "INSERT INTO tweets (data) VALUES ($1)", [x]) do
+          {:error, error} ->
+            Logger.error "Error #{inspect(error)} while inserting tweet #{inspect(x)}"
+          {:ok, _} ->
+            Twisp.Recorder.tweet_recorded(current_pid)
+        end
       end)
       |> Stream.run
     end)
