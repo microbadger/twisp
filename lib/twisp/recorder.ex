@@ -52,7 +52,7 @@ defmodule Twisp.Recorder do
       |> Stream.each(fn(x) ->
         Twisp.Database.query!(db_pid, "INSERT INTO tweets (data) VALUES ($1)", [x])
       end)
-      |> Enum.to_list
+      |> Stream.run
     end)
 
     {:ok, state}
