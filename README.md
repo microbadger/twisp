@@ -16,7 +16,7 @@ docker run -d -p 4000:4000 maxmouchet/twisp
 ```
 
 ### Heroku
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/maxmouchet/twisp)
 
 After creating the app, you can retrieve the database URL at https://postgres.heroku.com/databases.
 
