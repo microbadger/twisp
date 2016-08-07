@@ -41,8 +41,8 @@ defmodule Twisp.Recorder do
 
     current_pid = self()
     spawn_monitor(fn ->
-      Logger.info("Starting Twitter stream")
-      Logger.info("Language: #{language} / Keywords: #{keywords} / User IDs: #{user_ids}")
+      Logger.info "Starting Twitter stream"
+      Logger.info "Language: #{language} / Keywords: #{keywords} / User IDs: #{user_ids}"
 
       ExTwitter.configure(:process, oauth_tokens)
 
