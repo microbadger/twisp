@@ -1,0 +1,20 @@
+{
+  "name": "Twisp",
+  "description": "Twisp follows specified keywords and users using Twitter streaming API, and save matching tweets as JSON in PgSQL.",
+  "keywords": ["Twitter", "Elixir", "JSON", "PostgreSQL"],
+  "repository": "https://github.com/maxmouchet/twisp",
+  "success_url": "/",
+  "addons": [
+    {
+      "plan": "heroku-postgresql:hobby-dev",
+      "options": {
+        "version": "9.5"
+      }
+    }
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/HashNuke/heroku-buildpack-elixir"
+    }
+  ]
+}
