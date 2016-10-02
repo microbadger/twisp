@@ -42,11 +42,19 @@ defmodule Twisp.Recorder do
     current_pid = self()
     spawn_monitor(fn ->
       Logger.info "Starting Twitter stream"
-      Logger.info "Language: #{language} / Keywords: #{keywords} / User IDs: #{user_ids}"
+
 
       ExTwitter.configure(:process, oauth_tokens)
 
-      ExTwitter.stream_filter(track: keywords, follow: user_ids, language: language)
+      stream = cond do
+        (keywords != "" || user_ids != "") ->
+          Logger.info "Language: #{language} / Keywords: #{keywords} / User IDs: #{user_ids}"
+          ExTwitter.stream_filter(track: keywords, follow: user_ids, language: language)
+        true ->
+          Logger.info "Language: #{language} / Sampling"
+          ExTwitter.stream_sample(language: language)
+      end
+
       |> Stream.map(fn(x)  -> Map.from_struct(x) end)
       |> Stream.each(fn(x) ->
         case Twisp.Database.query(db_pid, "INSERT INTO tweets (data) VALUES ($1)", [x]) do
